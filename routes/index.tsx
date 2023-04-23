@@ -18,12 +18,20 @@ export default function Home(props: PageProps) {
         style="display: flex; flex-direction: column; min-height: 100vh; padding-left: 5rem; padding-right: 5rem;"
       >
         <a href="about/">
-          <Title iteration={0} title={"ABOUT ME"} />
+          <h1>
+            <Title iteration={0} title={"ABOUT ME"} />
+          </h1>
         </a>
-        <Title iteration={0} title={"PROJECTS"} />
-        <Title iteration={0} title={"CONTACT"} />
+        <h1>
+          <Title iteration={0} title={"PROJECTS"} />
+        </h1>
+        <h1>
+          <Title iteration={0} title={"CONTACT"} />
+        </h1>
         <a href="blog/">
-          <Title iteration={0} title={"BLOG"} />
+          <h1>
+            <Title iteration={0} title={"BLOG"} />
+          </h1>
         </a>
       </main>
     </>
