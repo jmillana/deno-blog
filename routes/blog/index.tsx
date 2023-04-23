@@ -1,10 +1,12 @@
 import { Head } from "$fresh/runtime.ts";
+import { useEffect, useState } from "preact/hooks";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { listPosts } from "../../utils/posts.ts";
 import Navbar from "../../components/Navbar.tsx";
 import Footer from "../../components/Footer.tsx";
+import PostsGrid from "../../islands/PostsGrid.tsx";
+
 import type { Post } from "../../types.d.ts";
-import { CSS } from "$gfm/mod.ts";
 
 export const handler: Handlers = {
   async GET(req, context) {
@@ -16,7 +18,6 @@ export const handler: Handlers = {
 export default function Home(props: PageProps) {
   const { data } = props;
   const { posts } = data;
-  const { dark_mode } = data;
 
   return (
     <>
@@ -24,13 +25,25 @@ export default function Home(props: PageProps) {
         <link rel="stylesheet" href="/styles/main.css" />
       </Head>
       <main
+        class="p-4 grid grid-cols-1 gap-4"
+        style="display: flex; flex-direction: column; min-height: 100vh; padding-left: 5rem; padding-right: 5rem;"
+      >
+        <Navbar />
+        <PostsGrid posts={posts} />
+        <Footer />
+      </main>
+    </>
+  );
+}
+
+/*
+<main
         class="p-4, markdown-body"
         data-color-mode="dark"
         data-dark-theme="dark"
         style="display: flex; flex-direction: column; min-height: 100vh; padding-left: 5rem; padding-right: 5rem;"
       >
-        <Navbar />
-        <style dangerouslySetInnerHTML={{ __html: CSS }} />
+<style dangerouslySetInnerHTML={{ __html: CSS }} />
         <h1 class="text-4xl font-bold">Latest Posts</h1>
         {posts.map((post: Post) => (
           <article class="mt-4">
@@ -42,8 +55,5 @@ export default function Home(props: PageProps) {
             <time>{Intl.DateTimeFormat("es").format(post.date)}</time>
           </article>
         ))}
-        <Footer />
-      </main>
-    </>
-  );
-}
+        </main>
+*/
