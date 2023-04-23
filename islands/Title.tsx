@@ -6,6 +6,7 @@ interface TitleProps {
   iteration: number;
   title: string;
   display_text?: string;
+  tag?: string;
 }
 
 const alphabet = [
@@ -67,9 +68,5 @@ export default function Title(props: TitleProps) {
     }, 60);
   };
 
-  return (
-    <div>
-      <h1 onMouseOver={handleMouseOver}>{display_text}</h1>
-    </div>
-  );
+  return <span onMouseOver={handleMouseOver}>{display_text}</span>;
 }
